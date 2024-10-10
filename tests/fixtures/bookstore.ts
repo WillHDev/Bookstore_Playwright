@@ -1,17 +1,17 @@
 import { test as base } from '@playwright/test';
-import { ProductPage } from '../pages/product-page.ts';
+import { BooksPage } from '../pages/books-page.ts';
 
 
 type BookstoreFixtures = {
 
-  productPage: ProductPage;
+  booksPage: BooksPage;
 
 };
 
 export const test = base.extend<BookstoreFixtures>({
 
-  productPage: async ({ page }, use) => {
-    await use(new ProductPage( page ));
+  booksPage: async ({ page }, use) => {
+    await use(new BooksPage( page ));
   },
 
 });

@@ -1,16 +1,14 @@
 
 import { type Locator, type Page } from '@playwright/test';
 
-export class ProductPage {
+export class BooksPage {
   readonly page: Page;
-  readonly boltShirt: Locator;
   readonly miniCart: Locator;
   readonly checkoutBtn: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.boltShirt =  page.locator('.inventory_item_description:has-text("Sauce Labs Bolt T-Shirt")');
-    this.miniCart =  page.locator('.shopping_cart_link');
+    this.miniCart =  page.locator("(//span[@class='mat-mdc-button-touch-target'])[3]");
     this.checkoutBtn = page.getByText('Checkout');
     }
 
@@ -18,8 +16,10 @@ export class ProductPage {
         await this.page.goto('https://bookcart.azurewebsites.net/');
     }
 
-    async addToCart( item: string ) {
-        await this.page.locator(item).locator("text=Add to cart").click();
+    async addToCart( book: string ) {
+        console.log(book);
+        await this.page.locator(`mat-card.book-card:has-text("${book}")`)
+                    .locator('text=" Add to Cart "').click();
     }
 
     async goToCheckout( ) {
@@ -36,3 +36,6 @@ export class ProductPage {
         return true;
     }
 }
+
+
+
