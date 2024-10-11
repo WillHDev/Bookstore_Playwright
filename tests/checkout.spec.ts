@@ -1,7 +1,10 @@
-import { test, expect, page } from './fixtures/bookstore';
+import { test, expect, page, booksPage } from './fixtures/bookstore';
 
-test('Add item to cart', async ({ page }) => {
-    await page.goto('https://bookcart.azurewebsites.net/checkout');
+test('Add item to cart', async ({ booksPage, page }) => {
+    await booksPage.load();
+    await booksPage.addToCart("Harry Potter and the Prisoner of Azkaban");
+    await booksPage.goToCheckout();
+    //await page.goto('https://bookcart.azurewebsites.net/checkout');
     await page.getByPlaceholder('Name').fill('John'); 
     await page.getByPlaceholder('Address Line 1').fill('3600 Portland Avenue');
     await page.getByPlaceholder('Address Line 2').fill('Apt B');
