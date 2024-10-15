@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   globalSetup: './global-setup',
-  //globalTeardown: './global-teardown',
+  globalTeardown: './global-teardown',
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
